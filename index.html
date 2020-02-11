@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel = "stylesheet" href = "style.css" type = "text/css">
+		<script src = "script.js"> </script>
+		<script src = "online.js"> </script>
+		<script src = "canvas.js"> </script>
+		<title>Dominó </title>
+	</head>
+
+<body>
+<div id="topo">
+ <h1> Dominó</h1>
+</div>
+
+
+ <div class = "container">
+ <form id = "temporarios">
+  <input onclick="botaoLogin()" type=button value=Autenticação>
+  <input onclick ="botaoRegras(0)" type=button value=Regras>
+  <input onclick = "botaoPontuacao()" type=button value=Pontuação>
+  <input onclick = "ranking()" type = button value="Pontuação online">
+  <input onclick = "botaoConfig()" type=button value=Configurações>
+  <input onclick = "botaoInstrucoes()" type=button value=Instruções>
+  <input onclick = "logout()" type=button value=Logout id="logoutButton">
+ </form>
+ </div>
+ <br> <br>
+  <input type=image src = "https://www.pngrepo.com/png/13669/170/play-button.png" id = "playbutton" onclick= "iniciarJogo()" alt="imagem indisponível">
+
+ <br>
+
+  <div id = "formularioLogin">
+  	<div id = "autenticacao">Autenticação</div> <br>
+	<form id = "registo" action=registar method=post>
+	  <p>Username <input id ="nick"></p>
+	  <p>Password <input id = "pass" type=password name=Password> </p>
+	  <input id = "registar" type=button value=Registar onclick="login()">
+	</form>
+  </div>
+
+	<div id = "Regra0" class = "flex-center">0- O jogo de domino é composto por 28 peças.
+		<input class = "next" onclick="botaoIr1(0)" type=button value="Next >">
+	</div>
+
+	<div id = "Regra1" class = "flex-center">
+		<input class = "previous" onclick="botaoRegras(1)" type=button value= "< Previous">
+		<p>1- Cada jogador tira uma peça do monte, e começa quem tiver a peça mais alta.</p>
+		<input class = "next" onclick="botaoIr2(0)" type=button value="Next >">
+	</div>
+
+	<div id = "Regra2" class = "flex-center">
+		<input class = "previous" onclick="botaoIr1(1)" type=button value= "< Previous">
+		<p>2- São distribuidas 7 peças aleatoriamente por cada jogador.</p>
+		<input class = "next" onclick="botaoIr3(0)" type=button value="Next >">
+	</div>
+
+	<div id = "Regra3" class = "flex-center">
+		<input class = "previous" onclick="botaoIr2(1)" type=button value= "< Previous">
+		<p>3- Os jogadores alternam a vez jogando uma peça que tenha um número igual a um número de uma das peças das pontas.</p>
+		<input class = "next" onclick="botaoIr4(0)" type=button value="Next >">
+	</div>
+
+	<div id = "Regra4" class = "flex-center">
+		<input class = "previous" onclick="botaoIr3(1)" type=button value= "< Previous">
+		<p>4- Nao se pode passar a vez; se o jogador nao tiver uma peça que satisfaça a regra anterior, deverá tirar dominós do monte, aleatoriamente,
+		até lhe sair uma peça jogável nas condições atuais do tabuleiro. Se o monte esvaziar e o jogador nao tiver jogadas disponíveis, então aí deverá passar a vez ao jogador seguinte.</p>
+		<input class = "next" onclick="botaoIr5(0)" type=button value="Next >">
+
+	</div>
+
+	<div id = "Regra5" class = "flex-center">
+		<input class = "previous" onclick="botaoIr4(1)" type=button value= "< Previous">
+		<p>5- O valor de uma peça é igual à soma de todas as pintas nela presentes.</p>
+		<input class = "next" onclick="botaoIr6(0)" type=button value="Next >">
+	</div>
+
+	<div id = "Regra6" class = "flex-center">
+		<input class = "previous" onclick="botaoIr5(1)" type=button value= "< Previous">
+		<p>6- Vitória :
+		Ganha o primeiro jogador que fique sem peças.
+
+		No caso de ambos os jogadores nao terem peças jogaveis na mao, o jogo termina, ganhando o jogador que tiver um menor total de pontos
+		na mão.	</p>
+		<input class = "next" onclick="botaoRegras(0)" type=button value="Close">
+	</div>
+
+
+  <div id = "config">
+  	<form>
+  		Contra quem deseja jogar? <br>
+  		<input id = "Computador" type = "radio" name = "Adversário" value = "Computador" onclick = "nivel()"> Computador <br>
+  		<div id = "dificuldade">
+  			Escolha a dificuldade: <br>
+  			<input id = "facil" type = "radio" name = "Dificuldade" value = "Facil"> Fácil <br>
+  			<input id = "dificil" type = "radio" name = "Dificuldade" value = Dificil> Difícil <br>
+  		</div>
+  		<input id="Jogador" type = "radio" name = "Adversário" value = "Jogador" onclick = "nivel()"> Jogador <br><!--id adicionado paa seleção-->
+  		<!--  <input type = "submit" value = "Submit"> -->
+  	</form>
+  </div>
+
+<div>
+	<table id = "pontuacao"> <!-- tabela -->
+		<tr> <!-- table row (uma fila da tabela) -->
+			<th>Username</th> <!-- esta fila só inclui cabeçalhos (th = table header) -->
+			<th>Nº vitórias</th>
+			<th>Nº derrotas</th>
+		</tr>
+		<tr>
+			<td>Player</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>CPU</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+
+<div>
+	<table id = "pontuacaoOnline">
+		<tr>
+			<th>Username</th>
+			<th>Vitórias</th>
+			<th>Jogos</th>
+		</tr>
+	</table>
+</div>
+
+<div id = "instrucoes">
+	<p>Antes de iniciar o jogo, por favor selecione um nível de dificuldade nas configurações.</p>
+	<p>Para jogar, basta clicar numa das suas peças, e em seguida, clicar numa peça de uma das pontas do tabuleiro.</p>
+	<p>Se a jogada for válida, será executada. Senão, terá de selecionar uma jogada válida. Se não tiver peças jogáveis,
+	o jogo irá automaticamente buscar peças ao monte por si.</p> <p>Caso o monte esteja vazio, e não tiver jogadas válidas, terá
+	de passar a sua vez. Para isso, terá de clicar no botão "Passar" que se encontra por baixo do monte.</p>
+</div>
+	<canvas id="waiting" width="100" height = "50"> </canvas>
+	<canvas id="playing" width="200" height="100"> </canvas>
+  <input onclick = "desistir()" type=button value="Desistir" id = "desistir">
+  <br>
+
+<div id = "gametable">
+	<div id = "adversario">
+		<!-- mao do adversario (virada ao conttrario) -->
+	</div>
+
+	<div id = "areajogo">
+		<!-- jogo -->
+	</div>
+
+	<div id = "jogador">
+		<!-- mao do jogador -->
+	</div>
+
+	<div id="monte">
+		<!-- monte -->
+		<input onclick = "passar()" type=button value="Passar" id = "passar">
+	</div>
+
+
+  </div>
+
+  <br>
+
+<div id = "messageboard">
+
+</div>
+
+<input onclick = "closeMSG()" id = "clsmsg" type=button value=X>
+
+
+<!--  https://image.flaticon.com/icons/png/512/148/148744.png-->
+<!--  <div class = "container">
+	  <div class = item> &#127042 </div>
+</div>-->
+</body>
+</html>
